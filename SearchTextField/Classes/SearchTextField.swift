@@ -147,6 +147,8 @@ open class SearchTextField: UITextField {
     fileprivate let indicator = UIActivityIndicatorView(style: .gray)
     fileprivate var maxTableViewSize: CGFloat = 0
     
+    private var delayManager = DelayManager()
+
     fileprivate var filteredResults = [SearchTextFieldItem]()
     fileprivate var filterDataSource = [SearchTextFieldItem]() {
         didSet {
@@ -384,8 +386,14 @@ open class SearchTextField: UITextField {
             }
             self.placeholderLabel?.text = ""
         } else {
-            filter(forceShowAll: forceNoFiltering)
-            prepareDrawTableResult()
+            let delayManager = DelayManager()
+            delayManager.delayWithSeconds(0.5) { [weak self] in
+                guard let self = self else { return }
+                self.filter(forceShowAll: self.forceNoFiltering)
+                self.prepareDrawTableResult()
+            }
+            self.delayManager.isCancel = true
+            self.delayManager = delayManager
         }
         
         buildPlaceholderLabel()

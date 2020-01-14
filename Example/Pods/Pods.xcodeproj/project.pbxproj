@@ -13,6 +13,7 @@
 		9E523A19F105F4BCCD4EA74D55DE6BDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		D6400D8E66DDBB1D316A780C999399A4 /* Pods-SearchTextField_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 109DCB3179FF0EE3E357F6239981A078 /* Pods-SearchTextField_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E63923B75DCD031BEA3FD1BDDFACE3AA /* Pods-SearchTextField_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E157816586CBD8C9C0716C75ECE5C0 /* Pods-SearchTextField_Example-dummy.m */; };
+		EF8FC17C23CDA043008DE0D0 /* DelayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8FC17A23CDA03F008DE0D0 /* DelayManager.swift */; };
 		F24CE8D8FECA0648DF1F1170267B2FA7 /* SearchTextField-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A109414D31A3D94B2A93F7A6FF4E3A18 /* SearchTextField-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		CE4E98DA6AB2356EB5206126B4AC7623 /* Pods_SearchTextField_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchTextField_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D49996587A81EEF291C1B8913944DAB7 /* SearchTextField-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SearchTextField-prefix.pch"; sourceTree = "<group>"; };
 		D9728D02D51EC67255CF1B67AA13FCD8 /* Pods-SearchTextField_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SearchTextField_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EF8FC17A23CDA03F008DE0D0 /* DelayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				60D4E6B24E504A32309DA366418160F7 /* SearchTextField-Info.plist */,
 				D49996587A81EEF291C1B8913944DAB7 /* SearchTextField-prefix.pch */,
 				A2B15CB1D2CB3A255F7AF18A7411432C /* SearchTextField-umbrella.h */,
+				EF8FC17A23CDA03F008DE0D0 /* DelayManager.swift */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/SearchTextField";
@@ -247,6 +250,9 @@
 					B8103CCE80CCEFC8EE389A125FC01E4E = {
 						LastSwiftMigration = 1020;
 					};
+					C59690011C01A6B67B04796F278468F4 = {
+						LastSwiftMigration = 1120;
+					};
 				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -291,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F24CE8D8FECA0648DF1F1170267B2FA7 /* SearchTextField-dummy.m in Sources */,
+				EF8FC17C23CDA043008DE0D0 /* DelayManager.swift in Sources */,
 				51B87853A757F7B3042498F3FE2C566D /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +424,7 @@
 			baseConfigurationReference = 0928FD811A6BAEF1405A97E41AD36DD0 /* Pods-SearchTextField_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -440,6 +448,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -452,6 +461,7 @@
 			baseConfigurationReference = 9A77583F7D651D4ACA5B14916AE6F2D5 /* Pods-SearchTextField_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -476,6 +486,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
