@@ -686,3 +686,23 @@ enum Direction {
     case down
     case up
 }
+
+////////////////////////////////////////////////////////////////////////
+// DelayManager
+
+class DelayManager {
+    
+    var isCancel = false
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            if !self.isCancel {
+                completion()
+            }
+        }
+    }
+    
+    deinit {
+        isCancel = true
+    }
+}
