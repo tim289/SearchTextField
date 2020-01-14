@@ -152,12 +152,16 @@ open class SearchTextField: UITextField {
     fileprivate var filteredResults = [SearchTextFieldItem]()
     fileprivate var filterDataSource = [SearchTextFieldItem]() {
         didSet {
-            filter(forceShowAll: forceNoFiltering)
-            buildSearchTableView()
-            
-            if startVisibleWithoutInteraction {
-                textFieldDidChange()
+            delay(forceShowAll: forceNoFiltering) { [weak self] in
+                guard let self = self else { return }
+                self.filter(forceShowAll: self.forceNoFiltering)
+                self.buildSearchTableView()
+                           
+                if self.startVisibleWithoutInteraction {
+                    self.textFieldDidChange()
+                }
             }
+            
         }
     }
     
@@ -382,27 +386,31 @@ open class SearchTextField: UITextField {
             clearResults()
             tableView?.reloadData()
             if startVisible || startVisibleWithoutInteraction {
-                filter(forceShowAll: true)
+                delay(forceShowAll: forceNoFiltering) { [weak self] in
+                    guard let self = self else { return }
+                    self.filter(forceShowAll: true)
+                }
             }
             self.placeholderLabel?.text = ""
         } else {
-            let delayManager = DelayManager()
-            delayManager.delayWithSeconds(0.5) { [weak self] in
+            delay(forceShowAll: forceNoFiltering) { [weak self] in
                 guard let self = self else { return }
                 self.filter(forceShowAll: self.forceNoFiltering)
                 self.prepareDrawTableResult()
+                self.buildPlaceholderLabel()
             }
-            self.delayManager.isCancel = true
-            self.delayManager = delayManager
         }
         
-        buildPlaceholderLabel()
+        
     }
     
     @objc open func textFieldDidBeginEditing() {
         if (startVisible || startVisibleWithoutInteraction) && text!.isEmpty {
-            clearResults()
-            filter(forceShowAll: true)
+            delay(forceShowAll: forceNoFiltering) { [weak self] in
+                guard let self = self else { return }
+                self.clearResults()
+                self.filter(forceShowAll: true)
+            }
         }
         placeholderLabel?.attributedText = nil
     }
@@ -438,6 +446,15 @@ open class SearchTextField: UITextField {
             })
             
         }
+    }
+    
+    fileprivate func delay(forceShowAll addAll: Bool, completion: @escaping () -> ()) {
+        let delayManager = DelayManager()
+        delayManager.delayWithSeconds(0.8) {
+            completion()
+        }
+        self.delayManager.isCancel = true
+        self.delayManager = delayManager
     }
     
     fileprivate func filter(forceShowAll addAll: Bool) {
